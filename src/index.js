@@ -1,21 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
+import { useLocalStorageState } from './uselocalstoragestate';
 import './index.css';
 
 function App() {
-  const [count, setCount] = useState(() => {
-    let value;
-    try {
-      value = JSON.parse(window.localStorage.getItem('react-app:count') || '0');
-    } catch (e) {
-      // ignore error
-    }
-    return value;
-  });
-
-  useEffect(() => {
-    window.localStorage.setItem('react-app:count', count);
-  }, [count]);
+  const [count, setCount] = useLocalStorageState('react-app:count', 0);
 
   return (
     <>
